@@ -1,0 +1,64 @@
+
+- Node.js with Express.js framework
+- PostgreSQL database for persistent storage
+- Use JWT for authentication and role-based access control (roles: CUSTOMER, ADMIN)
+- Use bcrypt for password hashing
+- Implement a mock payment gateway (simulate payment success without real payment integration)
+- Use PostgreSQL transactions to handle real-time inventory updates and prevent overselling
+
+---
+
+**Functional Requirements:**
+
+1. User Authentication:
+   - POST /auth/register: Register new users (both CUSTOMER and ADMIN roles, but default to CUSTOMER)
+   - POST /auth/login: Login users and return JWT token
+
+2. Product & Category Management (Admin):
+   - GET /products: List and search products (filter by category, name, price range)
+   - GET /products/:id: Get product details
+   - POST /products: Add a new product (Admin only)
+   - PUT /products/:id: Update product details (Admin only)
+   - DELETE /products/:id: Delete a product (Admin only)
+   - GET /categories: List all categories
+   - POST /categories: Add a new category (Admin only)
+   - PUT /categories/:id: Update category (Admin only)
+   - DELETE /categories/:id: Delete category (Admin only)
+
+3. Cart Management (Customer):
+   - GET /cart: View current user's cart items
+   - POST /cart: Add product to cart with quantity
+   - PUT /cart/:productId: Update quantity of product in cart
+   - DELETE /cart/:productId: Remove product from cart
+
+4. Order Processing:
+   - POST /orders/checkout: Checkout cart items, process payment via mock gateway, create order and order items, update product stock atomically within a transaction
+   - GET /orders: Get order history for the logged-in user
+   - GET /orders/:id: Get details of a specific order (only accessible by owner or admin)
+   - PUT /orders/:id/status: Update order status (Admin only; statuses: PLACED, SHIPPED, DELIVERED, CANCELLED)
+
+5. Admin Reports:
+   - GET /admin/reports/sales: Generate sales reports such as total sales and best-selling products (Admin only)
+
+---
+
+**Non-Functional Requirements:**
+- Use middleware to protect routes and enforce role-based access control
+- Passwords should be hashed using bcrypt
+- Use environment variables for database connection and JWT secret keys
+- Follow REST best practices with proper status codes and error handling
+- Include basic input validation and sanitization
+
+---
+
+**Database Schema (PostgreSQL):**
+
+- users(user_id, username, password, email, phone, role)
+- categories(category_id, name)
+- products(product_id, name, category_id, price, stock, description)
+- cart(cart_id, user_id, product_id, quantity)
+- orders(order_id, user_id, order_date, status, total_amount)
+- order_items(order_item_id, order_id, product_id, quantity, price)
+
+---
+
