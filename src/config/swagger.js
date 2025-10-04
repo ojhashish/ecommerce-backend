@@ -92,9 +92,9 @@ const swaggerDefinition = {
       },
       LoginRequest: {
         type: 'object',
-        required: ['username', 'password'],
+        required: ['email', 'password'],
         properties: {
-          username: { type: 'string', example: 'admin' },
+          email: { type: 'string', example: 'admin@example.com' },
           password: { type: 'string', example: 'admin123' }
         }
       },
@@ -112,7 +112,15 @@ const swaggerDefinition = {
       TokenResponse: {
         type: 'object',
         properties: {
-          token: { type: 'string', example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' }
+          token: { type: 'string', example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' },
+          user: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer', example: 1 },
+              role: { type: 'string', enum: ['CUSTOMER', 'ADMIN'], example: 'CUSTOMER' },
+              email: { type: 'string', example: 'john@example.com' }
+            }
+          }
         }
       }
     }

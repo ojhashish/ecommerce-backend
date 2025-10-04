@@ -32,9 +32,19 @@ const { register, login } = require('../controllers/auth');
  *                 message:
  *                   type: string
  *                   example: User registered
- *                 user_id:
- *                   type: integer
- *                   example: 1
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                       example: 1
+ *                     role:
+ *                       type: string
+ *                       enum: ['CUSTOMER', 'ADMIN']
+ *                       example: 'CUSTOMER'
+ *                     email:
+ *                       type: string
+ *                       example: 'john@example.com'
  *       400:
  *         description: Registration failed
  *         content:
