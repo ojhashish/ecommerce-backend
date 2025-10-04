@@ -4,8 +4,8 @@ require('dotenv').config();
 
 async function seedDatabase() {
   try {
-    // Sync database (create tables if they don't exist)
-    await sequelize.sync();
+  // Sync database (create tables if they don't exist). Use alter to add new columns like imageUrl.
+  await sequelize.sync({ alter: true });
     
     console.log('🌱 Starting database seeding...');
     
@@ -70,28 +70,32 @@ async function seedDatabase() {
         category_id: electronicsCategory.category_id,
         price: 999.00,
         stock: 50,
-        description: 'Latest iPhone with advanced features'
+        description: 'Latest iPhone with advanced features',
+        imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80'
       },
       {
         name: 'Samsung Galaxy S24',
         category_id: electronicsCategory.category_id,
         price: 899.00,
         stock: 30,
-        description: 'Premium Android smartphone'
+        description: 'Premium Android smartphone',
+        imageUrl: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80'
       },
       {
         name: 'Nike Air Max',
         category_id: clothingCategory.category_id,
         price: 159.99,
         stock: 100,
-        description: 'Comfortable running shoes'
+        description: 'Comfortable running shoes',
+        imageUrl: 'https://images.unsplash.com/photo-1528701800489-4760a0c4a7d4?w=800&q=80'
       },
       {
         name: 'JavaScript: The Good Parts',
         category_id: booksCategory.category_id,
         price: 29.99,
         stock: 200,
-        description: 'Essential JavaScript programming book'
+        description: 'Essential JavaScript programming book',
+        imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80'
       }
     ];
     

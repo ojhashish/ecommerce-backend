@@ -6,5 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     price: { type: DataTypes.DECIMAL(10,2), allowNull: false },
     stock: { type: DataTypes.INTEGER, allowNull: false },
     description: { type: DataTypes.TEXT },
+    imageUrl: { type: DataTypes.STRING, allowNull: true, defaultValue: '' },
   }, { tableName: 'products', timestamps: false });
 };
