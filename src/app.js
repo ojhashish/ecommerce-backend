@@ -16,7 +16,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ['http://localhost:4200', 'https://ecommerce-frontendbiz2x.netlify.app/'],',
+  origin: ['http://localhost:4200', 'https://ecommerce-frontendbiz2x.netlify.app/']
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
